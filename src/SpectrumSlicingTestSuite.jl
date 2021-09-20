@@ -4,6 +4,8 @@ export convergenceRatio,testIntervals
 
 import Polynomials
 import GaussQuadrature
+using Printf
+using LinearAlgebra
 
 include("./chebyshevpoly.jl")
 include("./kpm.jl")

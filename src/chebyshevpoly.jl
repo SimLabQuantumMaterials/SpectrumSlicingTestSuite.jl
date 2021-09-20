@@ -29,9 +29,9 @@ function chebyshevpoly(n)
                 tkm1 = tk;
             end
         end
-        tk = tk.';
+        tk = transpose(tk);
         tk = tk[:]
     end
 
-    return Polynomials.Poly(flipdim(tk,1))
+    return Polynomials.Polynomial(reverse(tk,1))
 end
