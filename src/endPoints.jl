@@ -3,8 +3,8 @@ function endPoints( A, V, M )
     nvec = size(V,2);
     p = kpm(A, V, M);
 
-    ∂p = Polynomials.polyder(p);
-    ∂2p = Polynomials.polyder(∂p);
+    ∂p = Polynomials.derivative(p);
+    ∂2p = Polynomials.derivative(∂p);
 
     r_∂p = Polynomials.roots(∂p) |>
         x -> filter( isreal, x ) |>

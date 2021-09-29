@@ -1,5 +1,6 @@
 function testIntervals(A,V,W)
-    const n = size(A,1);
+    #const n = size(A,1);
+    n = size(A,1);
 
     roots = map( x ->
                  endPoints(A,V,x)[1],
@@ -24,14 +25,14 @@ end
 
 function testIntervals(B,V)
 
-W = eigfact(B)[:values]
-const c = (W[1] + W[end]) / 2 ;
-const d = (W[end] - W[1]) / 2 ;
+    W = eigen(Matrix(B)).values
+    c = (W[1] + W[end]) / 2 ;
+    d = (W[end] - W[1]) / 2 ;
 
-const A = (B - eye(size(B)...)*c) / d;
-W = (W - c) / d;
+    A = (B - I.*c) / d;
+    W = (W .- c) / d;
 
-intvls = testIntervals(A,V,W)
+    intvls = testIntervals(A,V,W)
 
 return intvls,W
 

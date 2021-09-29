@@ -27,7 +27,7 @@ function kpm( A, Vinit, M::Integer )
     end
 
 
-    p = Polynomials.Poly(0.0)
+    p = Polynomials.Polynomial(0.0)
     for k=1:M
         p += chebyshevpoly(k-1) * mu[k]
     end
