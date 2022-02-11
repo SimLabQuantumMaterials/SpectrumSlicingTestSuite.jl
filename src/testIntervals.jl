@@ -1,4 +1,4 @@
-function testIntervals(A,V,W)
+function testIntervals(A,V,W; l::Real=0.05,u::Real=0.2)
     #const n = size(A,1);
     n = size(A,1);
 
@@ -14,7 +14,7 @@ function testIntervals(A,V,W)
     # post-process intervals
     intvls = filter(intvls) do  x
         count = sum(x[1] .<= W .<= x[2])
-        return n*0.05 <= count <= n*0.2
+        return n*l <= count <= n*u
     end
 
     intvls = map(intvls) do x
@@ -23,7 +23,7 @@ function testIntervals(A,V,W)
     end
 end
 
-function testIntervals(B,V)
+function testIntervals(B,V; l::Real=0.05, u::Real=0.2)
 
     W = eigen(Matrix(B)).values
     c = (W[1] + W[end]) / 2 ;
@@ -32,7 +32,7 @@ function testIntervals(B,V)
     A = (B - I.*c) / d;
     W = (W .- c) / d;
 
-    intvls = testIntervals(A,V,W)
+    intvls = testIntervals(A,V,W; l=l,u=u)
 
 return intvls,W
 
